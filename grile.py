@@ -328,7 +328,7 @@ class Simulation:
         self.log = dict()
         self.starttime = None
         self.grile = grile
-        self.temphandler = TempFileHandler()
+        self.temphandler = TempFileHandler(self.grile)
         self.data_content = dict()
 
         self.ended = False
@@ -376,6 +376,7 @@ class Simulation:
     def end(self):
         if not self.stopped:
             self.yell('Please stop the simulation before finalizing')
+            return
 
         self.ended = True
         self.grile.finalize(self)
